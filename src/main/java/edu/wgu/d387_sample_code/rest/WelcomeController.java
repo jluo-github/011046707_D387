@@ -2,6 +2,8 @@ package edu.wgu.d387_sample_code.rest;
 
 // todo: readme
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +22,12 @@ import java.util.concurrent.Executors;
 public class WelcomeController {
 
   private ExecutorService executor = Executors.newFixedThreadPool(2);
-  private Properties englishProperties = new Properties();
-  private Properties frenchProperties = new Properties();
+  private Properties enProperties = new Properties();
+  private Properties frProperties = new Properties();
 
   public WelcomeController() {
-    loadResourceBundle("welcome_en_US.properties", englishProperties);
-    loadResourceBundle("welcome_fr_CA.properties", frenchProperties);
+    loadResourceBundle("welcome_en_US.properties", enProperties);
+    loadResourceBundle("welcome_fr_CA.properties", frProperties);
   }
 
   private void loadResourceBundle(String bundleName, Properties properties) {
@@ -37,42 +39,31 @@ public class WelcomeController {
     }
   }
 
-  @GetMapping("/welcome")
-
-  public WelcomeMessages welcome() {
-    WelcomeMessages messages = new WelcomeMessages();
-
-    executor.execute(() -> {
-      messages.setEnglishMessage(englishProperties.getProperty("welcome"));
-    });
-
-    executor.execute(() -> {
-      messages.setFrenchMessage(frenchProperties.getProperty("welcome"));
-    });
-
-    return messages;
-  }
-
-  public static class WelcomeMessages {
+  @Setter
+  @Getter
+  public static class Message {
     private String englishMessage;
     private String frenchMessage;
 
-    public String getEnglishMessage() {
-      return englishMessage;
-    }
-
-    public void setEnglishMessage(String englishMessage) {
-      this.englishMessage = englishMessage;
-    }
-
-    public String getFrenchMessage() {
-      return frenchMessage;
-    }
-
-    public void setFrenchMessage(String frenchMessage) {
-      this.frenchMessage = frenchMessage;
-    }
   }
+
+  @GetMapping("/welcome")
+
+  public Message welcome() {
+    Message message = new Message();
+
+    executor.execute(() -> {
+      message.setEnglishMessage(enProperties.getProperty("welcome"));
+    });
+
+    executor.execute(() -> {
+      message.setFrenchMessage(frProperties.getProperty("welcome"));
+    });
+
+    return message;
+  }
+
+
 }
 
 

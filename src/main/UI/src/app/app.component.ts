@@ -109,15 +109,15 @@ export class AppComponent implements OnInit {
   // todo: readme
   EnglishWelcomeMessage() {
     this.getEnglishWelcomeMessage().subscribe(message => {
-      this.englishWelcomeMessage = message.welcome;
-      console.log('english message: ', message.welcome);
+      this.englishWelcomeMessage = message.englishMessage;
+      console.log('english message: ', message.englishMessage);
     });
   }
 
   FrenchWelcomeMessage() {
     this.getFrenchWelcomeMessage().subscribe(message => {
-      this.frenchWelcomeMessage = message.welcome;
-      console.log('french message: ', message.welcome);
+      this.frenchWelcomeMessage = message.frenchMessage;
+      console.log('french message: ', message.frenchMessage);
     });
   }
 }

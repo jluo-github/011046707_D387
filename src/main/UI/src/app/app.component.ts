@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
               private configService: ConfigService) {
   }
 
-
   private baseURL: string = 'http://localhost:8080';
 
   private getUrl: string = this.baseURL + '/room/reservation/v1/';
@@ -27,13 +26,13 @@ export class AppComponent implements OnInit {
   request!: ReserveRoomRequest;
   currentCheckInVal!: string;
   currentCheckOutVal!: string;
-  // todo:
+  // todo: readme
   englishWelcomeMessage!: string;
   frenchWelcomeMessage!: string;
 
   ngOnInit() {
 
-    // Call the welcome message functions here
+    // todo: readme
     this.EnglishWelcomeMessage();
     this.FrenchWelcomeMessage();
 
@@ -98,18 +97,16 @@ export class AppComponent implements OnInit {
       this.baseURL + '/room/reservation/v1?checkin=' + this.currentCheckInVal + '&checkout=' + this.currentCheckOutVal, {responseType: 'json'});
   }
 
-
+  // todo: readme
   getEnglishWelcomeMessage(): Observable<any> {
-
     return this.httpClient.get(this.getUrl + "welcome", {responseType: 'json'});
   }
 
   getFrenchWelcomeMessage(): Observable<any> {
-
     return this.httpClient.get(this.getUrl + 'welcome', {responseType: 'json'})
   }
 
-
+  // todo: readme
   EnglishWelcomeMessage() {
     this.getEnglishWelcomeMessage().subscribe(message => {
       this.englishWelcomeMessage = message.welcome;
@@ -123,7 +120,6 @@ export class AppComponent implements OnInit {
       console.log('french message: ', message.welcome);
     });
   }
-
 }
 
 

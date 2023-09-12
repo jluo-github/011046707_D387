@@ -12,9 +12,10 @@ import java.util.concurrent.ExecutorService;
 
 import static java.util.concurrent.Executors.newFixedThreadPool;
 
+// todo: readme
+
 @CrossOrigin
 @RestController
-//todo: 1. add the correct path
 @RequestMapping("/room/reservation/v1")
 public class WelcomeController {
 
@@ -22,15 +23,14 @@ public class WelcomeController {
 
   @GetMapping("/welcome")
   public Properties welcome() {
+
     Properties properties = new Properties();
+
     executor.execute(() -> {
       try {
         InputStream stream = new ClassPathResource("welcome_en_US.properties").getInputStream();
         properties.load(stream);
-//        stream = new ClassPathResource("welcome_en_US.properties").getInputStream();
-//        properties.load(stream);
-//        stream = new ClassPathResource("welcome_en_US.properties").getInputStream();
-//        properties.load(stream);
+
         System.out.println(properties.getProperty("welcome"));
         System.out.println("WelcomeController.welcome.english");
       } catch (Exception e) {
@@ -42,21 +42,13 @@ public class WelcomeController {
       try {
         InputStream stream = new ClassPathResource("welcome_fr_CA.properties").getInputStream();
         properties.load(stream);
-//        stream = new ClassPathResource("welcome_fr_CA.properties").getInputStream();
-//        properties.load(stream);
-//        stream = new ClassPathResource("welcome_fr_CA.properties").getInputStream();
-//        properties.load(stream);
 
         System.out.println(properties.getProperty("welcome"));
         System.out.println("WelcomeController.welcome.french");
       } catch (Exception e) {
         e.printStackTrace();
       }
-
     });
-
     return properties;
-
   }
-
 }

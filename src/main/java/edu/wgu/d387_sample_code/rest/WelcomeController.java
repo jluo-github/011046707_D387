@@ -25,10 +25,6 @@ public class WelcomeController {
   private Properties enProperties = new Properties();
   private Properties frProperties = new Properties();
 
-  public WelcomeController() {
-    loadResourceBundle("welcome_en_US.properties", enProperties);
-    loadResourceBundle("welcome_fr_CA.properties", frProperties);
-  }
 
   private void loadResourceBundle(String bundleName, Properties properties) {
     try {
@@ -39,6 +35,11 @@ public class WelcomeController {
     }
   }
 
+  public WelcomeController() {
+    loadResourceBundle("welcome_en_US.properties", enProperties);
+    loadResourceBundle("welcome_fr_CA.properties", frProperties);
+  }
+  
   @Setter
   @Getter
   public static class Message {

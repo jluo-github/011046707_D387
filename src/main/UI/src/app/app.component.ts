@@ -27,14 +27,14 @@ export class AppComponent implements OnInit {
   currentCheckInVal!: string;
   currentCheckOutVal!: string;
   // todo: readme
-  englishWelcomeMessage!: string;
-  frenchWelcomeMessage!: string;
+  englishWelcome!: string;
+  frenchWelcome!: string;
 
   ngOnInit() {
 
     // todo: readme
-    this.EnglishWelcomeMessage();
-    this.FrenchWelcomeMessage();
+    this.EnglishWelcome();
+    this.FrenchWelcome();
 
     this.roomsearch = new FormGroup({
       checkin: new FormControl(' '),
@@ -98,26 +98,26 @@ export class AppComponent implements OnInit {
   }
 
   // todo: readme
-  getEnglishWelcomeMessage(): Observable<any> {
+  getEnglishWelcome(): Observable<any> {
     return this.httpClient.get(this.getUrl + "welcome", {responseType: 'json'});
   }
 
-  getFrenchWelcomeMessage(): Observable<any> {
+  getFrenchWelcome(): Observable<any> {
     return this.httpClient.get(this.getUrl + 'welcome', {responseType: 'json'})
   }
 
   // todo: readme
-  EnglishWelcomeMessage() {
-    this.getEnglishWelcomeMessage().subscribe(message => {
-      this.englishWelcomeMessage = message.englishMessage;
-      console.log('english message: ', message.englishMessage);
+  EnglishWelcome() {
+    this.getEnglishWelcome().subscribe(message => {
+      this.englishWelcome = message.englishMessage;
+      console.log('english: ', message.englishMessage);
     });
   }
 
-  FrenchWelcomeMessage() {
-    this.getFrenchWelcomeMessage().subscribe(message => {
-      this.frenchWelcomeMessage = message.frenchMessage;
-      console.log('french message: ', message.frenchMessage);
+  FrenchWelcome() {
+    this.getFrenchWelcome().subscribe(message => {
+      this.frenchWelcome = message.frenchMessage;
+      console.log('french: ', message.frenchMessage);
     });
   }
 }

@@ -78,7 +78,10 @@
                 </td>
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong>
+                  <strong>Price: ${{room.price}}</strong><br/>
+                  <strong>Price: C${{+room.price * 1.35 | number: '1.0-0' }}</strong><br/>
+                  <strong>Price: €{{+room.price * 0.93 | number: '1.0-0' }}</strong><br/>
+
                 </td>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>
@@ -89,6 +92,8 @@
           </div>
         </div>
       </div>
+
+
     </article>
   </div><!-- welcome -->
   <div class="scene" id="hotelinfo">

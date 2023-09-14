@@ -36,24 +36,24 @@ public class TimeController {
     // Convert to Eastern Time
     ZonedDateTime zonedDateTimeEastern = zonedDateTime.withZoneSameInstant(zEastern);
     LocalDateTime localDateTimeEastern = zonedDateTimeEastern.toLocalDateTime();
-    String easternTime = zonedDateTimeEastern.format(DateTimeFormatter.ofPattern("HH:mm")) + " " + "Eastern Time " +
+    String easternTime = zonedDateTimeEastern.format(DateTimeFormatter.ofPattern("HH:mm a")) + " " + "Eastern Time " +
         "(ET)";
 
     // Convert to Mountain Time
     ZonedDateTime zonedDateTimeMountain = zonedDateTime.withZoneSameInstant(zMountain);
     LocalDateTime localDateTimeMountain = zonedDateTimeMountain.toLocalDateTime();
 
-    String mountainTime = zonedDateTimeMountain.format(DateTimeFormatter.ofPattern("HH:mm")) + " " + "Mountain " +
+    String mountainTime = zonedDateTimeMountain.format(DateTimeFormatter.ofPattern("HH:mm a")) + " " + "Mountain " +
         "Time (MT)";
     // Convert to Coordinated Universal Time (UTC)
 
     ZonedDateTime zonedDateTimeUTC = zonedDateTime.withZoneSameInstant(zUTC);
     LocalDateTime localDateTimeUTC = zonedDateTimeUTC.toLocalDateTime();
 
-    String utcTime = zonedDateTimeUTC.format(DateTimeFormatter.ofPattern("HH:mm")) + " " + "Coordinated Universal " +
+    String utcTime = zonedDateTimeUTC.format(DateTimeFormatter.ofPattern("HH:mm a")) + " " + "Coordinated Universal " +
         "Time (UTC)";
 
-    String result = "Online Live Presentation Time:\n" +
+    String result = "\n" +
         easternTime + "\n" +
         mountainTime + "\n" +
         utcTime;

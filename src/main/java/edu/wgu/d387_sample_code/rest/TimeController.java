@@ -21,9 +21,7 @@ public class TimeController {
 
   ZonedDateTime zonedDateTime = localDateTime.atZone(zoneId);
 
-  @GetMapping("/time")
-
-  public String time() {
+  public String threeTimeZones() {
     // Define the time zones
     ZoneId zEastern = ZoneId.of("America/New_York");
     ZoneId zMountain = ZoneId.of("America/Denver");
@@ -38,31 +36,36 @@ public class TimeController {
     // Convert to Eastern Time
     ZonedDateTime zonedDateTimeEastern = zonedDateTime.withZoneSameInstant(zEastern);
     LocalDateTime localDateTimeEastern = zonedDateTimeEastern.toLocalDateTime();
-    String easternTime = formatTime(zonedDateTimeEastern, "Eastern Time (ET)");
+    String easternTime = zonedDateTimeEastern.format(DateTimeFormatter.ofPattern("HH:mm")) + " " + "Eastern Time " +
+        "(ET)";
 
     // Convert to Mountain Time
     ZonedDateTime zonedDateTimeMountain = zonedDateTime.withZoneSameInstant(zMountain);
     LocalDateTime localDateTimeMountain = zonedDateTimeMountain.toLocalDateTime();
-    String mountainTime = formatTime(zonedDateTimeMountain, "Mountain Time (MT)");
 
+    String mountainTime = zonedDateTimeMountain.format(DateTimeFormatter.ofPattern("HH:mm")) + " " + "Mountain " +
+        "Time (MT)";
     // Convert to Coordinated Universal Time (UTC)
 
     ZonedDateTime zonedDateTimeUTC = zonedDateTime.withZoneSameInstant(zUTC);
     LocalDateTime localDateTimeUTC = zonedDateTimeUTC.toLocalDateTime();
-    String utcTime = formatTime(zonedDateTimeUTC, "Coordinated Universal Time (UTC)");
 
-    // Construct a single string containing all times
+    String utcTime = zonedDateTimeUTC.format(DateTimeFormatter.ofPattern("HH:mm")) + " " + "Coordinated Universal " +
+        "Time (UTC)";
+
     String result = "Online Live Presentation Time:\n" +
-        "ET: " + easternTime + "\n" +
-        "MT: " + mountainTime + "\n" +
-        "UTC: " + utcTime;
+        easternTime + "\n" +
+        mountainTime + "\n" +
+        utcTime;
     System.out.println(result);
     return result;
   }
 
-  private String formatTime(ZonedDateTime zonedDateTimeEastern, String timeZone) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    return zonedDateTime.format(formatter) + " " + timeZone;
+  @GetMapping("/time")
+  public String time() {
+    return threeTimeZones();
   }
+
+
 }

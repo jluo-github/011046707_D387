@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 @RequestMapping("/room/reservation/v1")
 public class WelcomeController {
 
-  private ExecutorService executor = Executors.newFixedThreadPool(2);
+  private ExecutorService executor = Executors.newFixedThreadPool(3);
   private Properties enProperties = new Properties();
   private Properties frProperties = new Properties();
 
@@ -39,7 +39,7 @@ public class WelcomeController {
       try {
         InputStream stream = new ClassPathResource("welcome_en_US.properties").getInputStream();
         enProperties.load(stream);
-        message.setEnglishMessage(enProperties.getProperty("welcome"));
+        message.setEnglishMessage(enProperties.getProperty("welcome") + " " + Thread.currentThread().getName());
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -49,7 +49,7 @@ public class WelcomeController {
       try {
         InputStream stream = new ClassPathResource("welcome_fr_CA.properties").getInputStream();
         frProperties.load(stream);
-        message.setFrenchMessage(frProperties.getProperty("welcome"));
+        message.setFrenchMessage(frProperties.getProperty("welcome") + " " + Thread.currentThread().getName());
 
       } catch (Exception e) {
         e.printStackTrace();

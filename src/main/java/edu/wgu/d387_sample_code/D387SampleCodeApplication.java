@@ -3,10 +3,6 @@ package edu.wgu.d387_sample_code;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 
 import static java.util.concurrent.Executors.newFixedThreadPool;
@@ -20,7 +16,7 @@ public class D387SampleCodeApplication {
 
     SpringApplication.run(D387SampleCodeApplication.class, args);
 
-    Properties properties = new Properties();
+//    Properties properties = new Properties();
 //    messageExecutor.execute(() -> {
 //      try {
 //        InputStream stream = new ClassPathResource("welcome_en_US.properties").getInputStream();
@@ -44,23 +40,23 @@ public class D387SampleCodeApplication {
 //    });
 
 
-    ZoneId zEastern = ZoneId.of("America/New_York");
-
-    ZoneId zPacific = ZoneId.of("America/Los_Angeles");
-    ZoneId zoneId = ZoneId.systemDefault();
-
-    LocalDateTime localDateTime = LocalDateTime.now();
-    System.out.println("local time now: " + localDateTime.toString());
-
-    ZonedDateTime zonedDateTime = localDateTime.atZone(zoneId);
-
-    ZonedDateTime zonedDateTimeEastern = zonedDateTime.withZoneSameInstant(zEastern);
-    LocalDateTime localDateTimeEastern = zonedDateTimeEastern.toLocalDateTime();
-    System.out.println("local time now in Eastern: " + localDateTimeEastern.toString());
-
-    ZonedDateTime zonedDateTimePacific = zonedDateTime.withZoneSameInstant(zPacific);
-    LocalDateTime localDateTimePacific = zonedDateTimePacific.toLocalDateTime();
-    System.out.println("local time now in Pacific time " + localDateTimePacific.toString());
+//    ZoneId zEastern = ZoneId.of("America/New_York");
+//
+//    ZoneId zPacific = ZoneId.of("America/Los_Angeles");
+//    ZoneId zoneId = ZoneId.systemDefault();
+//
+//    LocalDateTime localDateTime = LocalDateTime.now();
+//    System.out.println("local time now: " + localDateTime.toString());
+//
+//    ZonedDateTime zonedDateTime = localDateTime.atZone(zoneId);
+//
+//    ZonedDateTime zonedDateTimeEastern = zonedDateTime.withZoneSameInstant(zEastern);
+//    LocalDateTime localDateTimeEastern = zonedDateTimeEastern.toLocalDateTime();
+//    System.out.println("local time now in Eastern: " + localDateTimeEastern.toString());
+//
+//    ZonedDateTime zonedDateTimePacific = zonedDateTime.withZoneSameInstant(zPacific);
+//    LocalDateTime localDateTimePacific = zonedDateTimePacific.toLocalDateTime();
+//    System.out.println("local time now in Pacific time " + localDateTimePacific.toString());
 
   }
 }

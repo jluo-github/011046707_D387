@@ -117,28 +117,27 @@ export class AppComponent implements OnInit {
 
   // todo: readme
   EnglishWelcome() {
-    this.getEnglishWelcome().subscribe(message => {
-      this.englishWelcome = message.englishMessage;
-      console.log('english: ', message.englishMessage);
-    });
+    this.getEnglishWelcome().subscribe(
+      message => {
+        this.englishWelcome = message.englishMessage;
+        console.log('english: ', message.englishMessage);
+      });
   }
 
   FrenchWelcome() {
-    this.getFrenchWelcome().subscribe(message => {
-      this.frenchWelcome = message.frenchMessage;
-      console.log('french: ', message.frenchMessage);
-    });
+    this.getFrenchWelcome().subscribe(
+      message => {
+        this.frenchWelcome = message.frenchMessage;
+        console.log('french: ', message.frenchMessage);
+      });
   }
 
   ThreeTimeZones(): void {
 
     this.getTimeZones().subscribe(
       data => {
-        this.timeZones = data; // Assuming your backend returns a string with time zones
+        this.timeZones = data;
         console.log('Time zones:', this.timeZones)
-      },
-      error => {
-        console.error('Error fetching time zones:', error);
       }
     );
   }

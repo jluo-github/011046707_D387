@@ -3,14 +3,8 @@ package edu.wgu.d387_sample_code;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-import java.util.concurrent.ExecutorService;
-
-import static java.util.concurrent.Executors.newFixedThreadPool;
-
 @SpringBootApplication
 public class D387SampleCodeApplication {
-
 
 
   public static void main(String[] args) {
@@ -60,6 +54,5 @@ public class D387SampleCodeApplication {
 //    System.out.println("local time now in Pacific time " + localDateTimePacific.toString());
 
 
-
-
+  }
 }

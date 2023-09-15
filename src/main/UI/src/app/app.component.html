@@ -19,16 +19,18 @@
 </header>
 <main id="wrapper">
   <div class="scene" id="welcome">
-    <article class="content">
 
+    <article class="content">
+      <!--          todo: readme-->
+      <div class="mb-5">
+        <h1>{{ englishWelcome}}</h1>
+        <h1>{{ frenchWelcome }}</h1>
+      </div>
       <div class="row">
         <div class="" col-12>
-          <!--          todo: readme-->
-          <div class="mb-5">
-            <h1>{{ englishWelcome}}</h1>
-            <h1>{{ frenchWelcome }}</h1>
-          </div>
-
+          <h1>Join us for an online live presentation held at the London Hatel on Oct 11, 2023 at </h1>
+          <h1>{{timeZones}}</h1>
+          <!--          <h1>12:30:00 PM Eastern Time | 10:30:00 AM Mountain Time | 4:30:00 PM UTC</h1>-->
 
           <div class="gallery">
             <img src="assets/images/intro_room.jpg" alt="Intro Gallery Room Sample Pictures">
@@ -78,7 +80,10 @@
                 </td>
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong>
+                  <strong>Price: ${{room.price}}</strong><br/>
+                  <strong>Price: C${{+room.price * 1.35 | number: '1.0-0' }}</strong><br/>
+                  <strong>Price: €{{+room.price * 0.93 | number: '1.0-0' }}</strong><br/>
+
                 </td>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>
@@ -89,6 +94,8 @@
           </div>
         </div>
       </div>
+
+
     </article>
   </div><!-- welcome -->
   <div class="scene" id="hotelinfo">

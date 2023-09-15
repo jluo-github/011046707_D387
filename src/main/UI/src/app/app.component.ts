@@ -29,12 +29,16 @@ export class AppComponent implements OnInit {
   // todo: readme
   englishWelcome!: string;
   frenchWelcome!: string;
+  timeZones!: string;
+
 
   ngOnInit() {
 
     // todo: readme
     this.EnglishWelcome();
     this.FrenchWelcome();
+
+    this.ThreeTimeZones();
 
     this.roomsearch = new FormGroup({
       checkin: new FormControl(' '),
@@ -106,19 +110,36 @@ export class AppComponent implements OnInit {
     return this.httpClient.get(this.getUrl + 'welcome', {responseType: 'json'})
   }
 
+  getTimeZones(): Observable<any> {
+    return this.httpClient.get(this.getUrl + 'time', {responseType: 'text'})
+  }
+
+
   // todo: readme
   EnglishWelcome() {
-    this.getEnglishWelcome().subscribe(message => {
-      this.englishWelcome = message.englishMessage;
-      console.log('english: ', message.englishMessage);
-    });
+    this.getEnglishWelcome().subscribe(
+      message => {
+        this.englishWelcome = message.englishMessage;
+        console.log('english: ', message.englishMessage);
+      });
   }
 
   FrenchWelcome() {
-    this.getFrenchWelcome().subscribe(message => {
-      this.frenchWelcome = message.frenchMessage;
-      console.log('french: ', message.frenchMessage);
-    });
+    this.getFrenchWelcome().subscribe(
+      message => {
+        this.frenchWelcome = message.frenchMessage;
+        console.log('french: ', message.frenchMessage);
+      });
+  }
+
+  ThreeTimeZones(): void {
+
+    this.getTimeZones().subscribe(
+      data => {
+        this.timeZones = data;
+        console.log('Time zones:', this.timeZones)
+      }
+    );
   }
 }
 

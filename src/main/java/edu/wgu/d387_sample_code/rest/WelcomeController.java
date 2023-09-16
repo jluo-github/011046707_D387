@@ -1,8 +1,9 @@
 package edu.wgu.d387_sample_code.rest;
 
+
 // todo: readme
 
-import edu.wgu.d387_sample_code.MyWelcomeMessage;
+import edu.wgu.d387_sample_code.model.MyWelcomeMessage;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

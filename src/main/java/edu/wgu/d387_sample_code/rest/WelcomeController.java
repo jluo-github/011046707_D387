@@ -2,8 +2,7 @@ package edu.wgu.d387_sample_code.rest;
 
 // todo: readme
 
-import lombok.Getter;
-import lombok.Setter;
+import edu.wgu.d387_sample_code.MyWelcomeMessage;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,25 +19,19 @@ import java.util.concurrent.Executors;
 @RequestMapping("/room/reservation/v1")
 public class WelcomeController {
 
-  private ExecutorService executor = Executors.newFixedThreadPool(3);
+  private ExecutorService executor = Executors.newFixedThreadPool(2);
   private Properties enProperties = new Properties();
   private Properties frProperties = new Properties();
 
-  @Setter
-  @Getter
-  public static class Message {
-    private String englishMessage;
-    private String frenchMessage;
-  }
+  MyWelcomeMessage message = new MyWelcomeMessage();
 
-  @GetMapping("/welcome")
-  public Message welcome() {
-    Message message = new Message();
+  public MyWelcomeMessage welcome() {
 
     executor.execute(() -> {
       try {
         InputStream stream = new ClassPathResource("welcome_en_US.properties").getInputStream();
         enProperties.load(stream);
+        System.out.println(enProperties.getProperty("welcome") + " " + Thread.currentThread().getName());
         message.setEnglishMessage(enProperties.getProperty("welcome") + " " + Thread.currentThread().getName());
       } catch (Exception e) {
         e.printStackTrace();
@@ -49,6 +42,7 @@ public class WelcomeController {
       try {
         InputStream stream = new ClassPathResource("welcome_fr_CA.properties").getInputStream();
         frProperties.load(stream);
+        System.out.println(frProperties.getProperty("welcome") + " " + Thread.currentThread().getName());
         message.setFrenchMessage(frProperties.getProperty("welcome") + " " + Thread.currentThread().getName());
 
       } catch (Exception e) {
@@ -57,6 +51,19 @@ public class WelcomeController {
     });
 
     return message;
+  }
+
+
+  @GetMapping("welcome/en")
+  public String getMessage() {
+    System.out.println("English message: " + welcome().getEnglishMessage());
+    return welcome().getEnglishMessage();
+  }
+
+  @GetMapping("welcome/fr")
+  public String getFrenchMessage() {
+    System.out.println("French message: " + welcome().getFrenchMessage());
+    return welcome().getFrenchMessage();
   }
 
 

@@ -103,11 +103,11 @@ export class AppComponent implements OnInit {
 
   // todo: readme
   getEnglishWelcome(): Observable<any> {
-    return this.httpClient.get(this.getUrl + "welcome", {responseType: 'json'});
+    return this.httpClient.get(this.getUrl + "welcome/en", {responseType: 'text'});
   }
 
   getFrenchWelcome(): Observable<any> {
-    return this.httpClient.get(this.getUrl + 'welcome', {responseType: 'json'})
+    return this.httpClient.get(this.getUrl + 'welcome/fr', {responseType: 'text'})
   }
 
   getTimeZones(): Observable<any> {
@@ -119,16 +119,18 @@ export class AppComponent implements OnInit {
   EnglishWelcome() {
     this.getEnglishWelcome().subscribe(
       message => {
-        this.englishWelcome = message.englishMessage;
-        console.log('english: ', message.englishMessage);
+        // this.englishWelcome = message.englishMessage;
+        this.englishWelcome = message;
+        console.log('english: ', message);
       });
   }
 
   FrenchWelcome() {
     this.getFrenchWelcome().subscribe(
       message => {
-        this.frenchWelcome = message.frenchMessage;
-        console.log('french: ', message.frenchMessage);
+        // this.frenchWelcome = message.frenchMessage;
+        this.frenchWelcome = message;
+        console.log('french: ', message);
       });
   }
 

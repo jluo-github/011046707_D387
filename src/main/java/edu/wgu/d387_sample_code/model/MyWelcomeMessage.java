@@ -1,4 +1,4 @@
-package edu.wgu.d387_sample_code;
+package edu.wgu.d387_sample_code.model;
 
 
 import lombok.Data;

@@ -29,6 +29,8 @@ export class AppComponent implements OnInit {
   // todo: readme
   englishWelcome!: string;
   frenchWelcome!: string;
+
+  // todo: readme
   timeZones!: string;
 
 
@@ -110,6 +112,7 @@ export class AppComponent implements OnInit {
     return this.httpClient.get(this.getUrl + 'welcome/fr', {responseType: 'text'})
   }
 
+  // todo: readme
   getTimeZones(): Observable<any> {
     return this.httpClient.get(this.getUrl + 'time', {responseType: 'text'})
   }
@@ -135,6 +138,7 @@ export class AppComponent implements OnInit {
   }
 
 
+  // todo: readme
   ThreeTimeZones(): void {
 
     this.getTimeZones().subscribe(

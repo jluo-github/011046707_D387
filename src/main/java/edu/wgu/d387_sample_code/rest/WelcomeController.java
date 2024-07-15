@@ -1,6 +1,5 @@
 package edu.wgu.d387_sample_code.rest;
 
-
 // todo: readme
 
 import edu.wgu.d387_sample_code.model.MyWelcomeMessage;
